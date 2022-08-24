@@ -25,19 +25,19 @@ jobs:
           sonar-scanner -v
           # get the version of the sonar scanner 
           which sonar-scanner
+          # chmod +x sonar-scanner
           # check if the sonar scanner is installed  
      - run:
         name: Execute Sonarqube sonarscanner
         command: |
-          /home/circleci/.sonar/sonar-scanner-4.7.0.2747-linux/bin/sonar-scanner \  
-          # explicitly set the path to the sonar scanner
-          -Dsonar.host.url=http://52.208.63.176:9000 \
+          sonar-scanner \
+          -Dsonar.projectKey=python-mini-project \
           -Dsonar.sources=. \
-          -Dsonar.login=sqp_49467997c2c3beb4b7fb467ff9c946268c33ce2d   
+          -Dsonar.host.url=http://52.208.63.176:9000   
 workflows:
   version: 2
   sonarqube:
     jobs:
       - sonarscanner:
-         context: SonarQube 
+        # context: SonarQube 
          # give context to the job         
