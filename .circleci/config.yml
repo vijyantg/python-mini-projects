@@ -31,7 +31,7 @@ jobs:
         name: Execute Sonarqube sonarscanner
         command: |
           /home/circleci/.sonar/sonar-scanner-4.7.0.2747-linux/bin/sonar-scanner \
-          -Dsonar.login=sqp_49467997c2c3beb4b7fb467ff9c946268c33ce2d
+          -Dsonar.login=sqp_00c92bc971eb54fb83f64af01c26620f1d20a488
           -Dsonar.projectKey=python-mini-project \
           -Dsonar.sources=. \
           -Dsonar.host.url=http://52.208.63.176:9000   
