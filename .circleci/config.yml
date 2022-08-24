@@ -30,7 +30,7 @@ jobs:
      - run:
         name: Execute Sonarqube sonarscanner
         command: |
-          /home/circleci/.sonar/sonar-scanner-4.7.0.2747-linux/bin/sonar-scanner \
+          /home/circleci/.sonar/sonar-scanner-4.7.0.2747-linux/bin/sonar-scanner -X \
           -Dsonar.login=sqp_00c92bc971eb54fb83f64af01c26620f1d20a488
           -Dsonar.projectKey=python-mini-project \
           -Dsonar.sources=. \
