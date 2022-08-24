@@ -5,7 +5,7 @@ orbs:
 jobs:
   sonarscanner:
     docker:
-      - image: cimg/deploy:2022.07 
+      - image: cimg/python:3.10.6 
       # using cimg 
       # use can use any relevant image
     working_directory: ~/workspace/circleci
@@ -22,7 +22,7 @@ jobs:
           unzip -o $HOME/.sonar/sonar-scanner.zip -d $HOME/.sonar/
           export PATH=$SONAR_SCANNER_HOME/bin:$PATH
           export SONAR_SCANNER_OPTS="-server"
-          sonar-scanner -v
+          #sonar-scanner -v
           # get the version of the sonar scanner 
           which sonar-scanner
           # chmod +x sonar-scanner
@@ -39,6 +39,6 @@ workflows:
   version: 2
   sonarqube:
     jobs:
-     - sonarscanner:
-        context: SonarQube 
+     - sonarscanner
+        #context: SonarQube 
          # give context to the job         
