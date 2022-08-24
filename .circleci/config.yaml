@@ -30,7 +30,7 @@ jobs:
      - run:
         name: Execute Sonarqube sonarscanner
         command: |
-          sonar-scanner \
+          /home/circleci/.sonar/sonar-scanner-4.7.0.2747-linux/bin/sonar-scanner \
           -Dsonar.projectKey=python-mini-project \
           -Dsonar.sources=. \
           -Dsonar.host.url=http://52.208.63.176:9000   
@@ -38,6 +38,6 @@ workflows:
   version: 2
   sonarqube:
     jobs:
-      - sonarscanner:
+      - sonarscanner
         # context: SonarQube 
          # give context to the job         
