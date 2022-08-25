@@ -30,8 +30,6 @@ jobs:
 #      - python/dist
      
      - run: pip install twine && twine upload dist/*
-        
-     - 
 
      - run:
         name: Execute Sonarqube sonarscanner
