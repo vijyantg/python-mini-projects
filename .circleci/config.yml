@@ -1,8 +1,7 @@
 version: 2.1
 # Using 2.1 will give access to new features 
 orbs: 
-  sonarqube: psl/sonarscanner@0.0.4 # using sonarscanner orb
-orbs: 
+  sonarqube: psl/sonarscanner@0.0.4 # using sonarscanner orb 
   python: circleci/python@2.0.3  
 jobs:
   sonarscanner:
