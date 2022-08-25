@@ -5,7 +5,7 @@ orbs:
 jobs:
   sonarscanner:
     docker:
-      - image: qnib/pytest 
+      - image: circleci/python@2.0.3
       # using cimg 
       # use can use any relevant image
     working_directory: ~/workspace/circleci
@@ -18,8 +18,7 @@ jobs:
         command: |
           export SONAR_SCANNER_VERSION=4.7.0.2747
           export SONAR_SCANNER_HOME=$HOME/.sonar/sonar-scanner-$SONAR_SCANNER_VERSION-linux
-          curl --create-dirs -sSLo $HOME/.sonar/sonar-scanner.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-$SONAR_SCANNER_VERSION-linux.zip
-          apt install unzip
+          curl --create-dirs -sSLo $HOME/.sonar/sonar-scanner.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-$SONAR_SCANNER_VERSION-linux.zip          
           unzip -o $HOME/.sonar/sonar-scanner.zip -d $HOME/.sonar/
           export PATH=$SONAR_SCANNER_HOME/bin:$PATH
           export SONAR_SCANNER_OPTS="-server"
@@ -28,10 +27,11 @@ jobs:
           which sonar-scanner
           # chmod +x sonar-scanner
           # check if the sonar scanner is installed  
-    #  - run:
-    #     name: Install python coverage 
-    #     command: |
-
+     - python/dist
+     
+     - run: pip install twine && twine upload dist/*
+        
+     - 
 
      - run:
         name: Execute Sonarqube sonarscanner
@@ -46,3 +46,9 @@ workflows:
   sonarqube:
     jobs:
       - sonarscanner
+      - python/test:
+          args: '--dev'
+          pkg-manager: pipenv
+          test-tool: pytest
+      - publish
+
