@@ -2,10 +2,12 @@ version: 2.1
 # Using 2.1 will give access to new features 
 orbs: 
   sonarqube: psl/sonarscanner@0.0.4 # using sonarscanner orb
+orbs: 
+  python: circleci/python@2.0.3  
 jobs:
   sonarscanner:
     docker:
-      - image: circleci/python@2.0.3
+      - image: cimg/deploy:2022.07
       # using cimg 
       # use can use any relevant image
     working_directory: ~/workspace/circleci
@@ -27,7 +29,7 @@ jobs:
           which sonar-scanner
           # chmod +x sonar-scanner
           # check if the sonar scanner is installed  
-#      - python/dist
+     - python/dist
      
      - run: pip install twine && twine upload dist/*
 
@@ -37,7 +39,7 @@ jobs:
           /home/circleci/.sonar/sonar-scanner-4.7.0.2747-linux/bin/sonar-scanner \
           -Dsonar.projectKey=python-mini-project \
           -Dsonar.sources=. \
-          -Dsonar.python.coverage.reportPaths=coverage.xml \
+         # -Dsonar.python.coverage.reportPaths=coverage.xml \
           -Dsonar.host.url=http://52.208.63.176:9000   
 workflows:
   version: 2
@@ -48,5 +50,5 @@ workflows:
           args: '--dev'
           pkg-manager: pipenv
           test-tool: pytest
-      - publish
+  
 
