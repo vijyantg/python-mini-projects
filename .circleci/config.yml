@@ -27,7 +27,7 @@ jobs:
           which sonar-scanner
           # chmod +x sonar-scanner
           # check if the sonar scanner is installed  
-     - python/dist
+#      - python/dist
      
      - run: pip install twine && twine upload dist/*
         
