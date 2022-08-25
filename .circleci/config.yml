@@ -5,7 +5,7 @@ orbs:
 jobs:
   sonarscanner:
     docker:
-      - image: cimg/deploy:2022.07 
+      - image: qnib/pytest 
       # using cimg 
       # use can use any relevant image
     working_directory: ~/workspace/circleci
@@ -27,17 +27,21 @@ jobs:
           which sonar-scanner
           # chmod +x sonar-scanner
           # check if the sonar scanner is installed  
+    #  - run:
+    #     name: Install python coverage 
+    #     command: |
+
+
      - run:
         name: Execute Sonarqube sonarscanner
         command: |
           /home/circleci/.sonar/sonar-scanner-4.7.0.2747-linux/bin/sonar-scanner \
           -Dsonar.projectKey=python-mini-project \
           -Dsonar.sources=. \
+          -Dsonar.python.coverage.reportPaths=coverage.xml \
           -Dsonar.host.url=http://52.208.63.176:9000   
 workflows:
   version: 2
   sonarqube:
     jobs:
       - sonarscanner
-        # context: SonarQube 
-         # give context to the job         
