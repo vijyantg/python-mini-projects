@@ -29,7 +29,7 @@ jobs:
      - run: 
           pip install -U pytest pytest-cov
      - run:          
-          python -m pytest --cov-report=xml --cov-src=.
+          python -m pytest --cov-report=xml --cov=src .
           
      - store_test_results:
           name: store results to coverage.xml
