@@ -28,7 +28,7 @@ jobs:
           which sonar-scanner  
      - run: 
           pip install pytest pytest-cov
-          python -e pytest --cov-report=coverage --cov-src=.
+          python -m pytest --cov-report=coverage --cov-src=.
           
      - store_test_results:
           name: store results to coverage.xml
