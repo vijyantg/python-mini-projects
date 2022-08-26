@@ -28,6 +28,7 @@ jobs:
           which sonar-scanner  
      - run: 
           pip install -U pytest pytest-cov
+     - run:          
           python -m pytest --cov-report=xyz --cov-src=.
           
      - store_test_results:
