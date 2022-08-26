@@ -1,3 +1,4 @@
 from src.main import main
-def test.main() -> None:
+
+def test_main() -> None:
     assert main() is None
