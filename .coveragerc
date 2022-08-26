@@ -1,5 +1,5 @@
-[xyz]
-directory = ~/workspace/coverage.xml
+[xml]
+directory = ~/workspace/coverage
 
 [report]
 exclude lines =
