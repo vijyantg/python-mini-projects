@@ -2,11 +2,11 @@ version: 2.1
 # Using 2.1 will give access to new features 
 orbs: 
   sonarqube: psl/sonarscanner@0.0.4 # using sonarscanner orb 
-  python: circleci/python@2.0.3  
+#   python: circleci/python@2.0.3  
 jobs:
   sonarscanner:
     docker:
-      - image: cimg/deploy:2022.07
+      - image: cimg/python:3.10.6
       # using cimg 
       # use can use any relevant image
     working_directory: ~/workspace/circleci
@@ -25,13 +25,14 @@ jobs:
           export SONAR_SCANNER_OPTS="-server"
           sonar-scanner -v
           # get the version of the sonar scanner 
-          which sonar-scanner
-          # chmod +x sonar-scanner
-          # check if the sonar scanner is installed  
-     - python/dist
-     
-     - run: pip install twine && twine upload dist/*
-
+          which sonar-scanner  
+     - run: 
+          pip install pytest pytest-cov
+          python -e pytest --cov-report=coverage --cov-src=.
+          
+     - store_test_results:
+          name: store results to coverage.xml
+          path: ~/workspace/
      - run:
         name: Execute Sonarqube sonarscanner
         command: |
@@ -44,9 +45,9 @@ workflows:
   sonarqube:
     jobs:
       - sonarscanner
-      - python/test:
-          args: '--dev'
-          pkg-manager: pipenv
-          test-tool: pytest
+#       - python/test:
+#           args: '--dev'
+#           pkg-manager: pipenv
+#           test-tool: pytest
   
 
