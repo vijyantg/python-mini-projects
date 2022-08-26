@@ -29,10 +29,10 @@ jobs:
      - run: 
           pip install -U pytest pytest-cov
      - run:          
-          python -m pytest --cov-report=xml --cov=src .
+          python -m pytest --cov-branch=main --cov=python-mini-projects --cov-config=.coveragerc --cov-report=xml --cov=src .
      - run:          
           pwd
-          ls -artl
+          ls -a
          
      - store_test_results:
           name: store results to coverage.xml
@@ -44,7 +44,7 @@ jobs:
           -Dsonar.projectKey=python-mini-project \
           -Dsonar.sources=. \
           -Dsonar.host.url=http://52.208.63.176:9000  \
-          -Dsonar.python.coverage.reportPath=~/workspace/coverage
+          -Dsonar.python.coverage.reportPath=~/workspace/coverage/circleci
 workflows:
   version: 2
   sonarqube:
