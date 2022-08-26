@@ -27,7 +27,7 @@ jobs:
           # get the version of the sonar scanner 
           which sonar-scanner  
      - run: 
-          pip install pytest pytest-cov
+          pip install -U pytest pytest-cov
           python -m pytest --cov-report=xyz --cov-src=.
           
      - store_test_results:
