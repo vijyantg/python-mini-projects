@@ -42,7 +42,8 @@ jobs:
           /home/circleci/.sonar/sonar-scanner-4.7.0.2747-linux/bin/sonar-scanner \
           -Dsonar.projectKey=python-mini-project \
           -Dsonar.sources=. \
-          -Dsonar.host.url=http://52.208.63.176:9000   
+          -Dsonar.host.url=http://52.208.63.176:9000  \
+          -Dsonar.python.coverage.reportPath=~/workspace/coverage
 workflows:
   version: 2
   sonarqube:
