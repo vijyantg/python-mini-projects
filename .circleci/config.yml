@@ -32,7 +32,7 @@ jobs:
           pip install coverage
 #           python -m coverage --version
      - run:
-          coverage run -m test_calc.py test_employee.py test_main.py
+          coverage run test_calc.py test_employee.py test_main.py
           coverage report
           coverage xml
 #           python -m pytest --cov-branch=main --cov=python-mini-projects --cov-config=.coveragerc --cov-report=xml --cov=src .
