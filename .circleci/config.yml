@@ -30,7 +30,7 @@ jobs:
 #           pip install -U pytest pytest-cov
      - run:
           pip install coverage
-          python -m coverage --version
+#           python -m coverage --version
      - run:
           coverage run -m my_program.py
           coverage report
