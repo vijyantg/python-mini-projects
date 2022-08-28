@@ -26,8 +26,8 @@ jobs:
           sonar-scanner -v
           # get the version of the sonar scanner 
           which sonar-scanner  
-     - run: 
-          pip install -U pytest pytest-cov
+#      - run: 
+#           pip install -U pytest pytest-cov
      - run:
           pip install coverage
           python -m coverage --version
