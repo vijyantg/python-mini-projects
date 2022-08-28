@@ -28,15 +28,25 @@ jobs:
           which sonar-scanner  
      - run: 
           pip install -U pytest pytest-cov
-     - run:          
-          python -m pytest --cov-branch=main --cov=python-mini-projects --cov-config=.coveragerc --cov-report=xml --cov=src .
+     - run:
+          pip install coverage
+          python -m coverage --version
+     - run:
+          coverage run -m my_program.py
+          coverage report
+          coverage xml
+#           python -m pytest --cov-branch=main --cov=python-mini-projects --cov-config=.coveragerc --cov-report=xml --cov=src .
      - run:          
           pwd
           ls -a
          
      - store_test_results:
           name: store results to coverage.xml
-          path: ~/workspace/coverage
+          path: ~/workspace/circleci/
+     - run:          
+          pwd
+          ls -a
+
      - run:
         name: Execute Sonarqube sonarscanner
         command: |
