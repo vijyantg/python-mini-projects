@@ -1,6 +1,0 @@
-[xml]
-directory = ~/workspace/circleci/
-
-[report]
-exclude lines =
-  if __name__==.__main__.:
