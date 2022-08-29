@@ -22,13 +22,13 @@ jobs:
      - run: 
          pip install -U pytest pytest-cov
          pip install unittest-xml-reporting
+         pip install nose 
      - run:         
          python -m unittest tests/test_calc.py -v
-#      - run:         
-#          python unittest --failfast tests/test_calc.py -v          
+         
      - run:
-         python -m xmlrunner tests/test_calc.py -o /home/workspace/circleci
-
+          nosetests -w tests/test_calc.py --with-xunit --with-coverage --cover-package=ae
+#          python -m xmlrunner tests/test_calc.py -o /home/workspace/circleci
 #         python -m xmlrunner discover -t ~/mycode/tests -o /tmp/build/junit-reports
 #         python -m pytest --cov-branch=main --cov=python-mini-projects --cov-config=.coveragerc --cov-report=xml --cov=src .
      - run:          
