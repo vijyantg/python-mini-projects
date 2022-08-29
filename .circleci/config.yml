@@ -1,52 +1,17 @@
-version: 2.1
-orbs: 
-  sonarqube: psl/sonarscanner@0.0.4
+version: 2.1  
+orbs:                                                                      
+    sonarcloud: sonarsource/sonarcloud@1.1.1
 jobs:
-  sonarscanner:
-    docker:
-      - image: cimg/python:3.10.6
-    working_directory: ~/workspace/circleci
-    steps:
-     - checkout
-     - run: 
-        name: Install Sonarqube sonarscanner
-        command: |
-          export SONAR_SCANNER_VERSION=4.7.0.2747
-          export SONAR_SCANNER_HOME=$HOME/.sonar/sonar-scanner-$SONAR_SCANNER_VERSION-linux
-          curl --create-dirs -sSLo $HOME/.sonar/sonar-scanner.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-$SONAR_SCANNER_VERSION-linux.zip          
-          unzip -o $HOME/.sonar/sonar-scanner.zip -d $HOME/.sonar/
-          export PATH=$SONAR_SCANNER_HOME/bin:$PATH
-          export SONAR_SCANNER_OPTS="-server"
-          sonar-scanner -v
-          # get the version of the sonar scanner 
-          which sonar-scanner  
-     - run: 
-          pip install -U pytest pytest-cov
-#      - run:
-#           pip install coverage
-#           python -m coverage --version
-     - run:
-          python -m unittest --failfast test_calc.py -v
-#         python -m pytest --cov-branch=main --cov=python-mini-projects --cov-config=.coveragerc --cov-report=xml --cov=src .
-     - run:          
-          pwd
-          ls -alrt         
-     - store_test_results:
-          name: store results to coverage.xml
-          path: ~/workspace/circleci/
-     - run:          
-          pwd
-          ls -lart
-     - run:
-        name: Execute Sonarqube sonarscanner
-        command: |
-          /home/circleci/.sonar/sonar-scanner-4.7.0.2747-linux/bin/sonar-scanner \
-          -Dsonar.projectKey=python-mini-project \
-          -Dsonar.sources=. \
-          -Dsonar.host.url=http://52.208.63.176:9000  \
-          -Dsonar.python.coverage.reportPaths=coverage.xml
-workflows:
-  version: 2
-  sonarqube:
-    jobs:
-      - sonarscanner
+    buildanddeploy:
+        docker :
+            - image: cimg/deploy:2022.07
+        working_directory: ~/workspace/circleci
+        steps:
+            - checkout 
+            - sonarcloud/scan
+workflows: 
+    version: 2 
+    build:
+        jobs:  
+            - buildanddeploy:
+                context: SonarCloud
