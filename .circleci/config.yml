@@ -32,7 +32,7 @@ jobs:
 #           pip install coverage
 # #           python -m coverage --version
      - run:
-          python -m unittest -v test_calc.py test_employee.py
+          python -m unittest -v test_calc.py
 #         coverage run test_calc.py test_employee.py 
 #         coverage report
 #         coverage xml
