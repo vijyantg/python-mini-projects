@@ -27,7 +27,9 @@ jobs:
 #      - run:         
 #          python unittest --failfast tests/test_calc.py -v          
      - run:
-         python -m xmlrunner -h
+         python -m xmlrunner -o ~/workspace/circleci
+         ls -lart
+         pwd
 #         python -m xmlrunner discover -t ~/mycode/tests -o /tmp/build/junit-reports
 #         python -m pytest --cov-branch=main --cov=python-mini-projects --cov-config=.coveragerc --cov-report=xml --cov=src .
      - run:          
