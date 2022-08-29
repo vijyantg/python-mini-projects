@@ -30,6 +30,6 @@ workflows:
   version: 2
   sonarqube:
     jobs:
-     - sonarscanner
-        context: SonarQube 
+      - sonarscanner:
+         context: SonarQube
         
