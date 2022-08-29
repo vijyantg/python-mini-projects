@@ -1,4 +1,5 @@
 import unittest
+import xmlrunner
 from unittest.mock import patch
 from employee import Employee
 
@@ -68,4 +69,4 @@ class TestEmployee(unittest.TestCase):
 
 
 if __name__ == '__main__':
-    unittest.main()
+    unittest.main(testRunner=xmlrunner.XMLTestRunner(output='test-reports'))
