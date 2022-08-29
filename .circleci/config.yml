@@ -2,7 +2,7 @@ version: 2.1
 # Using 2.1 will give access to new features 
 orbs: 
   sonarqube: psl/sonarscanner@0.0.4 # using sonarscanner orb 
-#   python: circleci/python@2.0.3  
+  
 jobs:
   sonarscanner:
     docker:
@@ -12,7 +12,7 @@ jobs:
     working_directory: ~/workspace/circleci
       # set a working directory for the job       
     steps:
-     - checkout # checkout the code
+     - checkout
      - run: 
         name: Install Sonarqube sonarscanner
         # install sonarscanner on your machine
@@ -28,7 +28,7 @@ jobs:
           which sonar-scanner  
      - run: 
           pip install -U pytest pytest-cov
-     - run:
+    #  - run:
 #           pip install coverage
 # #           python -m coverage --version
      - run:
