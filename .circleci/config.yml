@@ -26,7 +26,7 @@ jobs:
 #           pip install coverage
 #           python -m coverage --version
      - run:
-          python -m unittest -v test_calc.py test_employee.py
+          python -m unittest -v test_calc.py
 #         python -m pytest --cov-branch=main --cov=python-mini-projects --cov-config=.coveragerc --cov-report=xml --cov=src .
      - run:          
           pwd
