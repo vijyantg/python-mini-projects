@@ -23,7 +23,7 @@ jobs:
          pip install -U pytest pytest-cov
          pip install unittest-xml-reporting
      - run:         
-         python -m unittest test_calc.py -v
+         python unittest test_calc.py -v
          python unittest --failfast test_calc.py -v          
      - run:
          python -m xmlrunner -h
