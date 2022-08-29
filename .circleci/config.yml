@@ -1,21 +1,15 @@
 version: 2.1
-# Using 2.1 will give access to new features 
 orbs: 
-  sonarqube: psl/sonarscanner@0.0.4 # using sonarscanner orb 
-  
+  sonarqube: psl/sonarscanner@0.0.4
 jobs:
   sonarscanner:
     docker:
       - image: cimg/python:3.10.6
-      # using cimg 
-      # use can use any relevant image
     working_directory: ~/workspace/circleci
-      # set a working directory for the job       
     steps:
      - checkout
      - run: 
         name: Install Sonarqube sonarscanner
-        # install sonarscanner on your machine
         command: |
           export SONAR_SCANNER_VERSION=4.7.0.2747
           export SONAR_SCANNER_HOME=$HOME/.sonar/sonar-scanner-$SONAR_SCANNER_VERSION-linux
@@ -28,26 +22,21 @@ jobs:
           which sonar-scanner  
      - run: 
           pip install -U pytest pytest-cov
-    #  - run:
+#      - run:
 #           pip install coverage
-# #           python -m coverage --version
+#           python -m coverage --version
      - run:
-          python -m unittest -v test_calc.py
-#         coverage run test_calc.py test_employee.py 
-#         coverage report
-#         coverage xml
+          python -m unittest -v test_calc.py test_employee.py
 #         python -m pytest --cov-branch=main --cov=python-mini-projects --cov-config=.coveragerc --cov-report=xml --cov=src .
      - run:          
           pwd
-          ls -a
-         
+          ls -alrt         
      - store_test_results:
           name: store results to coverage.xml
           path: ~/workspace/circleci/
      - run:          
           pwd
-          ls -a
-
+          ls -lart
      - run:
         name: Execute Sonarqube sonarscanner
         command: |
@@ -55,13 +44,9 @@ jobs:
           -Dsonar.projectKey=python-mini-project \
           -Dsonar.sources=. \
           -Dsonar.host.url=http://52.208.63.176:9000  \
-          -Dsonar.python.coverage.reportPath=coverage.xml
+          -Dsonar.python.coverage.reportPaths=coverage.xml
 workflows:
   version: 2
   sonarqube:
     jobs:
       - sonarscanner
-#       - python/test:
-#           args: '--dev'
-#           pkg-manager: pipenv
-#           test-tool: pytest
