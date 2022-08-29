@@ -1,20 +1,15 @@
 version: 2.1
-# Using 2.1 will give access to new features 
 orbs: 
-  sonarqube: psl/sonarscanner@0.0.4 # using sonarscanner orb
+  sonarqube: psl/sonarscanner@0.0.4
 jobs:
   sonarscanner:
     docker:
-      - image: cimg/python:3.10.6 
-      # using cimg 
-      # use can use any relevant image
+     - image: cimg/python:3.10.6 
     working_directory: ~/workspace/circleci
-      # set a working directory for the job       
     steps:
-     - checkout # checkout the code
+     - checkout
      - run: 
         name: Install Sonarqube sonarscanner
-        # install sonarscanner on your machine
         command: |
           export SONAR_SCANNER_VERSION=4.7.0.2747
           export SONAR_SCANNER_HOME=$HOME/.sonar/sonar-scanner-$SONAR_SCANNER_VERSION-linux
@@ -22,11 +17,7 @@ jobs:
           unzip -o $HOME/.sonar/sonar-scanner.zip -d $HOME/.sonar/
           export PATH=$SONAR_SCANNER_HOME/bin:$PATH
           export SONAR_SCANNER_OPTS="-server"
-          #sonar-scanner -v
-          # get the version of the sonar scanner 
           which sonar-scanner
-          # chmod +x sonar-scanner
-          # check if the sonar scanner is installed  
      - run:
         name: Execute Sonarqube sonarscanner
         command: |
@@ -40,5 +31,5 @@ workflows:
   sonarqube:
     jobs:
      - sonarscanner
-        #context: SonarQube 
-         # give context to the job         
+        context: SonarQube 
+        
