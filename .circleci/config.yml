@@ -28,7 +28,7 @@ jobs:
          
      - run:
 #           nosetests -w tests/test_calc.py --with-xunit --with-coverage --cover-package=ae
-          nose2 --html-report --with-coverage --coverage-report html --coverage ~/workspace/circleci
+          nose2 --verbose --coverage-report html --coverage ~/workspace/circleci
           ls -a
 #          python -m xmlrunner tests/test_calc.py -o /home/workspace/circleci
 #         python -m xmlrunner discover -t ~/mycode/tests -o /tmp/build/junit-reports
