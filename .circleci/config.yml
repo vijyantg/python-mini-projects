@@ -20,11 +20,13 @@ jobs:
           sonar-scanner -v         
           which sonar-scanner  
      - run: 
-          pip install -U pytest pytest-cov
+         pip install -U pytest pytest-cov
+         pip install unittest-xml-reporting
+     - run:         
+         python -m unittest test_calc.py -v
+         python unittest --failfast test_calc.py -v          
      - run:
-          python -m unittest --failfast test_calc.py -v
-          pip install unittest-xml-reporting
-          python -m xmlrunner -h
+         python -m xmlrunner -h
 #         python -m xmlrunner discover -t ~/mycode/tests -o /tmp/build/junit-reports
 #         python -m pytest --cov-branch=main --cov=python-mini-projects --cov-config=.coveragerc --cov-report=xml --cov=src .
      - run:          
