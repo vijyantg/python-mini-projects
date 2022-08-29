@@ -17,19 +17,15 @@ jobs:
           unzip -o $HOME/.sonar/sonar-scanner.zip -d $HOME/.sonar/
           export PATH=$SONAR_SCANNER_HOME/bin:$PATH
           export SONAR_SCANNER_OPTS="-server"
-          sonar-scanner -v
-          # get the version of the sonar scanner 
+          sonar-scanner -v         
           which sonar-scanner  
      - run: 
           pip install -U pytest pytest-cov
-#      - run:
-#           pip install coverage
-#           python -m coverage --version
      - run:
           python -m unittest --failfast test_calc.py -v
           pip install unittest-xml-reporting
-#           python -m xmlrunner discover -t ~/mycode/tests -o /tmp/build/junit-reports
           python -m xmlrunner -h
+#         python -m xmlrunner discover -t ~/mycode/tests -o /tmp/build/junit-reports
 #         python -m pytest --cov-branch=main --cov=python-mini-projects --cov-config=.coveragerc --cov-report=xml --cov=src .
      - run:          
           pwd
