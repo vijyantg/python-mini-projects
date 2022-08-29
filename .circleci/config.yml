@@ -22,7 +22,7 @@ jobs:
      - run: 
          pip install -U pytest pytest-cov
          pip install unittest-xml-reporting
-         pip install nose 
+         pip install nose2 
      - run:         
          python -m unittest tests/test_calc.py -v
          
