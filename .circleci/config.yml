@@ -24,6 +24,7 @@ jobs:
          pip install unittest-xml-reporting
      - run:         
          python unittest test_calc.py -v
+     - run:         
          python unittest --failfast test_calc.py -v          
      - run:
          python -m xmlrunner -h
