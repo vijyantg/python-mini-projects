@@ -1,5 +1,6 @@
 import unittest
 import calc
+import xmlrunner
 
 
 class TestCalc(unittest.TestCase):
@@ -30,4 +31,4 @@ class TestCalc(unittest.TestCase):
 
 
 if __name__ == '__main__':
-    unittest.main()
+    unittest.main(testRunner=xmlrunner.XMLTestRunner(output='test-reports'))
