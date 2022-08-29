@@ -25,7 +25,7 @@ jobs:
      - run:         
          python -m unittest tests/test_calc.py -v
      - run:         
-         python unittest --failfast test_calc.py -v          
+         python unittest --failfast tests/test_calc.py -v          
      - run:
          python -m xmlrunner -h
 #         python -m xmlrunner discover -t ~/mycode/tests -o /tmp/build/junit-reports
